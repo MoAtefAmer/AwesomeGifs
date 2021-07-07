@@ -2,6 +2,8 @@ import { httpService } from './http.service';
 
 const apiEndPoint = "https://api.giphy.com/v1/gifs";
 
+
+// This should be in a .env file and called from there
 const key ="F0O4azZgU69W59x1RrmHHwNz67sEGCqn"
 
 export const fetchGifsService = {

@@ -17,6 +17,8 @@ class HomePage extends Component {
   };
 
   handleChange = async (e, { name, value }) => {
+
+    // Always reset the offset and limit whenever a new search query is inputted
    
     const { ogLimit, ogOffset } = this.state;
 
@@ -39,13 +41,15 @@ class HomePage extends Component {
   fetchMoreGifs = async () => {
   
     
-
+// If there is no search query then load infinitly normally
     if (this.state.query.length === 0) {
       this.setState({ offset: this.state.offset + this.state.limit });
 
       await this.props.getTrending(this.state.limit, this.state.offset);
     }
 
+
+    // If there is a search query then load more results according to the search query
     if (
       this.state.query.length > 0 &&
       this.props.gifsReducer.pagination.offset <=
@@ -72,12 +76,6 @@ class HomePage extends Component {
       this.props.gifsReducer.isLoaded && this.props.gifsReducer.gifs;
 
       
-    // Load the pagination info from reducer as well
-    // const gifCount =
-    //   this.props.gifsReducer.isLoaded &&
-    //   this.props.gifsReducer.pagination &&
-    //   this.props.gifsReducer.pagination.offset +
-    //     this.props.gifsReducer.pagination.count;
 
     const gifCount =
       this.props.gifsReducer.isLoaded &&
